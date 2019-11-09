@@ -22,7 +22,7 @@
     });
   };
 
-  setInterval(ajaxFileGet, 50);
+  setInterval(ajaxFileGet, 5000);
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
@@ -31,7 +31,7 @@
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
-    // debugger;
+    debugger;
     $.ajax({
       type: 'POST',
       data: formData,
@@ -41,7 +41,11 @@
       processData: false,
       success: () => {
         // reload the page
+        debugger;
         window.location = window.location.href;
+      },
+      error: () => {
+        console.log('Error')
       }
     });
   };
