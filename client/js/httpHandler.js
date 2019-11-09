@@ -1,3 +1,4 @@
+// var SwimTeam = require('./swimTeam')
 (function() {
 
   const serverUrl = 'http://127.0.0.1:3000';
@@ -6,6 +7,23 @@
   // TODO: build the swim command fetcher here
   //
 
+  const ajaxFileGet = () => {
+
+    $.ajax({
+      url: serverUrl,
+      type: 'GET',
+      success: (data) => {
+        // reload the page
+        console.log('Inside');
+        SwimTeam.move(data);
+      },
+      error: () => {
+        console.log('error');
+      }
+    });
+  };
+
+  setInterval(ajaxFileGet, 1000);
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
@@ -14,10 +32,11 @@
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
+    debugger;
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -44,6 +63,7 @@
     }
 
     ajaxFileUplaod(file);
+    ajaxFileGet(file);
   });
 
-})();
+}() );
