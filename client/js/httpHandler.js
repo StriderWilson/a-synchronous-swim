@@ -14,7 +14,6 @@
       type: 'GET',
       success: (data) => {
         // reload the page
-        console.log('Inside');
         SwimTeam.move(data);
       },
       error: () => {
@@ -23,7 +22,7 @@
     });
   };
 
-  setInterval(ajaxFileGet, 1000);
+  setInterval(ajaxFileGet, 50);
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
@@ -32,7 +31,7 @@
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
-    debugger;
+    // debugger;
     $.ajax({
       type: 'POST',
       data: formData,
@@ -49,7 +48,6 @@
 
   $('form').on('submit', function(e) {
     e.preventDefault();
-
     var form = $('form .file')[0];
     if (form.files.length === 0) {
       console.log('No file selected!');
@@ -63,7 +61,6 @@
     }
 
     ajaxFileUplaod(file);
-    ajaxFileGet(file);
   });
 
 }() );
